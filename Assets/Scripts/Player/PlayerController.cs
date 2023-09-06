@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Basic config")]
     public float maxForce = 10f; // Fuerza máxima que se puede aplicar
     public float minForce = 3.0f;
     public float maxSlideDistance = 3f; // Distancia máxima de deslizamiento
     public float minimumRequiredSlideDistance = 0.25f;
     public LineRenderer lineRenderer; // Referencia al LineRenderer para la visualización de la dirección
+
+    [Header("Modifiers")]
+    public float fallMultiplier = 2.5f;
 
     private Vector2 initialPosition;
     private Vector2 finalPosition;
@@ -66,5 +71,10 @@ public class PlayerController : MonoBehaviour
             // Desactiva la visualización de la línea
             lineRenderer.enabled = false;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity += (fallMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
     }
 }
