@@ -220,8 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa0533d230b5d44ba3157c227d4c5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 170374604}
-  parent: {fileID: 421891097}
   maxSpeedThreshold: 50
   minSpeedThreshold: 5
   maxStretch: 1.8
