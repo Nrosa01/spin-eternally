@@ -1,29 +1,32 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class SquashAndStretch : MonoBehaviour
 {
+    Transform parent;
+    Transform grandParent;
     Vector3 previousPosition;
-    public float maxSpeedThreshold;
-    public float minSpeedThreshold;
+    public float maxSpeed;
     public float maxStretch = 1.8f;
 
     float inverseStretch;
-    private Transform parent;
 
     private void Start()
     {
         inverseStretch = 1 / Mathf.Sqrt(maxStretch);
         parent = transform.parent;
+        grandParent = parent.parent;
     }
 
     void Stretch()
     {
+        parent.position = grandParent.position;
         Vector3 velocity = (transform.position - previousPosition) / Time.deltaTime;
+        float stretchFactor = Mathf.Clamp01(velocity.magnitude / maxSpeed);
+        parent.localScale = Vector3.Lerp(Vector3.one, new Vector3(inverseStretch, inverseStretch, maxStretch), stretchFactor);
         previousPosition = transform.position;
-        
-        float squashFactor = Mathf.Clamp01(velocity.magnitude / maxSpeedThreshold);
-        parent.localScale = Vector3.Lerp(Vector3.one, new Vector3(inverseStretch, maxStretch, inverseStretch), squashFactor);
-        parent.rotation = Quaternion.LookRotation(Vector3.forward, velocity.normalized);
+        parent.LookAt(parent.position + velocity);
+        transform.rotation = grandParent.rotation;
     }
 
     private void Update()
