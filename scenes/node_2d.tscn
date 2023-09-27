@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bltitn8yykhsr"]
+
+[ext_resource type="BankAsset" uid="uid://cuq3ojerhbyor" path="res://addons/FMOD/editor/resources/banks/{271c82fb-e82a-4321-85d8-eb9ead919340}.tres" id="1_u5gcm"]
+[ext_resource type="EventAsset" uid="uid://clau10vixhai4" path="res://addons/FMOD/editor/resources/events/{fcebb89b-ae6c-472d-bfdd-d75ff4eadb29}.tres" id="1_ylvso"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="."]
+play_event = 2
+event = ExtResource("1_ylvso")
+
+[node name="StudioListener2D" type="StudioListener2D" parent="."]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("1_u5gcm")

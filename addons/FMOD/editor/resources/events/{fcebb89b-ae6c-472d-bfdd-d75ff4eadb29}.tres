@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://clau10vixhai4"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Test Sound"
+guid = "{fcebb89b-ae6c-472d-bfdd-d75ff4eadb29}"
+name = "Test Sound"
