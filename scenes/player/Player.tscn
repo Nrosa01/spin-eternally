@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4fqc2qvxdosn"]
+
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_i8nmb"]
+[ext_resource type="Script" path="res://scripts/game_feel/Squashable2D.gd" id="1_kknyn"]
+[ext_resource type="Texture2D" uid="uid://2ckk7l0uqymu" path="res://sprites/circle.png" id="2_gocnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4n6sp"]
+radius = 4.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_i8nmb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_4n6sp")
+
+[node name="Squashable" type="Node2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="Visuals" type="Node2D" parent="Squashable"]
+script = ExtResource("1_kknyn")
+max_speed = 300.0
+max_stretch = 1.5
+position_lerp_factor = 0.15
+
+[node name="Sprite2D" type="Sprite2D" parent="Squashable/Visuals"]
+position = Vector2(0, -4)
+texture = ExtResource("2_gocnh")
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+points = PackedVector2Array(44, -1, 0, 0)
+width = 1.0
