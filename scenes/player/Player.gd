@@ -17,6 +17,8 @@ var initial_position : Vector2
 var final_position : Vector2
 var shoot_force : float
 
+@onready var trayectory_line: Line2D = $Trayectory
+
 func _ready():
 	line_renderer = $Line2D
 	line_renderer.visible = false
@@ -38,17 +40,24 @@ func _process(_delta):
 		line_renderer.points[1] = adjusted_final_position
 
 		line_renderer.visible = distance >= minimum_required_slide_distance
+		
+		trayectory_line.draw_trayectory(get_shoot_force())
 
 	elif Input.is_action_just_released("click"):
+		velocity += get_shoot_force()
+		trayectory_line.hide()
+		line_renderer.hide()
+
+func get_shoot_force() -> Vector2:
 		var distance = initial_position.distance_to(final_position)
 
 		distance = min(distance, max_slide_distance)
 
 		if distance >= minimum_required_slide_distance:
 			var direction = (initial_position - final_position).normalized()
-			velocity += direction * shoot_force * (distance / max_slide_distance)
-
-		line_renderer.visible = false
+			return direction * shoot_force * (distance / max_slide_distance)
+		else: 
+			return Vector2.ZERO
 
 func _physics_process(delta):
 	velocity += (fall_multiplier - 1) * -Vector2(0, -1) * gravity * delta

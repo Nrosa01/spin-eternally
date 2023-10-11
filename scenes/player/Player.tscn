@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fqc2qvxdosn"]
+[gd_scene load_steps=7 format=3 uid="uid://c4fqc2qvxdosn"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_i8nmb"]
 [ext_resource type="Script" path="res://scripts/game_feel/Squashable2D.gd" id="1_kknyn"]
 [ext_resource type="Texture2D" uid="uid://2ckk7l0uqymu" path="res://sprites/circle.png" id="2_gocnh"]
+[ext_resource type="Texture2D" uid="uid://c28yswojfwbh2" path="res://sprites/dashed-line.png" id="4_43ngk"]
+[ext_resource type="Script" path="res://scenes/player/Trayectory.gd" id="5_d4sqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n6sp"]
 radius = 4.0
@@ -28,6 +30,23 @@ position = Vector2(0, -4)
 texture = ExtResource("2_gocnh")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 top_level = true
 points = PackedVector2Array(44, -1, 0, 0)
 width = 1.0
+
+[node name="Trayectory" type="Line2D" parent="."]
+visible = false
+texture_repeat = 2
+width = 5.0
+texture = ExtResource("4_43ngk")
+texture_mode = 1
+script = ExtResource("5_d4sqb")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Trayectory"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trayectory/CharacterBody2D"]
+z_index = 1
+shape = SubResource("CircleShape2D_4n6sp")
+debug_color = Color(0.607843, 0.368627, 0.988235, 0.419608)
