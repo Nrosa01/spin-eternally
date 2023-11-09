@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
 # Basic config
-@export var config: PlayerConfig
+@export var config: PhysicsConfig
+@export var physics_algorithm: BasicPhysicAlgorithm
 var line_renderer: Line2D
 
 var shoot_force: float
@@ -49,12 +50,4 @@ func get_shoot_force(direction: Vector2, drag_distance: float) -> Vector2:
 		return Vector2.ZERO
 
 func _physics_process(delta):
-	velocity += (config.fall_multiplier - 1) * -Vector2(0, -1) * config.gravity * delta
-	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
-	if not collision:
-		return
-
-	if abs(collision.get_normal().x) <= 0.001:
-		velocity = velocity.slide(collision.get_normal()) * config.friction
-	else:
-		velocity = velocity.bounce(collision.get_normal()) * config.bounce_multiplier
+	physics_algorithm.move_body(self, config, delta)

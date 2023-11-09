@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://da08jdj6btsvq"]
+
+[ext_resource type="Script" path="res://resources/physics_algorithm/basic/basic_physic_algorithm.gd" id="1_rn1bq"]
+
+[resource]
+script = ExtResource("1_rn1bq")

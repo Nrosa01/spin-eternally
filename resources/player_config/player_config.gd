@@ -1,5 +1,5 @@
 extends Resource
-class_name PlayerConfig
+class_name PhysicsConfig
 
 @export var gravity: float = 980;
 @export var max_force : float = 700.0

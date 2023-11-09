@@ -1,6 +1,7 @@
 extends Line2D
 
-@export var config: PlayerConfig
+@export var config: PhysicsConfig
+@export var physics_algorithm: BasicPhysicAlgorithm
 
 @export var trayectory_distance: float = 400.0
 
@@ -33,13 +34,5 @@ func reset_body() -> void:
 	test_body.velocity = owner.velocity
 
 func move_body(delta: float) -> Vector2:
-	test_body.velocity += (config.fall_multiplier - 1) * -Vector2(0, -1) * config.gravity * delta
-	var collision: KinematicCollision2D = test_body.move_and_collide(test_body.velocity * delta)
-	if not collision: return test_body.global_position
-	
-	if abs(collision.get_normal().x) <= 0.001:
-		return test_body.global_position
-	else:	
-		test_body.velocity = test_body.velocity.bounce(collision.get_normal()) * config.bounce_multiplier
-
+	physics_algorithm.move_body(test_body, config, delta)
 	return test_body.global_position

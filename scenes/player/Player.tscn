@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4fqc2qvxdosn"]
+[gd_scene load_steps=12 format=3 uid="uid://c4fqc2qvxdosn"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_i8nmb"]
 [ext_resource type="Script" path="res://scripts/game_feel/Squashable2D.gd" id="1_kknyn"]
 [ext_resource type="Texture2D" uid="uid://2ckk7l0uqymu" path="res://sprites/circle.png" id="2_gocnh"]
 [ext_resource type="Resource" uid="uid://ctlcnc0eug2po" path="res://resources/player_config/player_config.tres" id="2_ve6f2"]
 [ext_resource type="Script" path="res://scripts/DragHandler.gd" id="3_hri3b"]
+[ext_resource type="Resource" uid="uid://da08jdj6btsvq" path="res://resources/physics_algorithm/basic/basic_physic_algorithm.tres" id="3_r05e6"]
 [ext_resource type="Texture2D" uid="uid://c28yswojfwbh2" path="res://sprites/dashed-line.png" id="4_43ngk"]
 [ext_resource type="Shader" path="res://shaders/uvscroll.gdshader" id="4_l1xy3"]
 [ext_resource type="Script" path="res://scenes/player/Trayectory.gd" id="5_d4sqb"]
@@ -19,6 +20,7 @@ shader = ExtResource("4_l1xy3")
 collision_layer = 2
 script = ExtResource("1_i8nmb")
 config = ExtResource("2_ve6f2")
+physics_algorithm = ExtResource("3_r05e6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -55,6 +57,7 @@ texture = ExtResource("4_43ngk")
 texture_mode = 1
 script = ExtResource("5_d4sqb")
 config = ExtResource("2_ve6f2")
+physics_algorithm = ExtResource("3_r05e6")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Trayectory"]
 collision_layer = 0
