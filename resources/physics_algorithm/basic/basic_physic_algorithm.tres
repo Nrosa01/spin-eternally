@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://da08jdj6btsvq"]
+[gd_resource type="Resource" script_class="BasicPhysicAlgorithm" load_steps=2 format=3 uid="uid://da08jdj6btsvq"]
 
 [ext_resource type="Script" path="res://resources/physics_algorithm/basic/basic_physic_algorithm.gd" id="1_rn1bq"]
 

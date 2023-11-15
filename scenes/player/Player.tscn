@@ -26,6 +26,9 @@ physics_algorithm = ExtResource("3_r05e6")
 z_index = 1
 shape = SubResource("CircleShape2D_4n6sp")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false
+
 [node name="DragHandler" type="Node2D" parent="."]
 script = ExtResource("3_hri3b")
 
