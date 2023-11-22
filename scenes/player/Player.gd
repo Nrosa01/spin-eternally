@@ -73,4 +73,4 @@ func get_shoot_force(direction: Vector2, drag_distance: float) -> Vector2:
 		return Vector2.ZERO
 
 func _physics_process(delta):
-	physics_algorithm.move_body(self, config, delta)
+	physics_algorithm.move_body(self, config)
