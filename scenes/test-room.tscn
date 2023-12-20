@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://3a15mifdv8eb"]
+[gd_scene load_steps=3 format=3 uid="uid://3a15mifdv8eb"]
 
 [ext_resource type="TileSet" uid="uid://dglwcnp6w6rmf" path="res://test_init_01.tres" id="3_mbnli"]
-[ext_resource type="PackedScene" uid="uid://86peggj34osh" path="res://ldtk_files/test.ldtk" id="3_xsnrk"]
 [ext_resource type="PackedScene" uid="uid://c4fqc2qvxdosn" path="res://scenes/player/Player.tscn" id="4_exo0a"]
 
 [node name="Node2D" type="Node2D"]
@@ -16,6 +15,3 @@ layer_0/tile_data = PackedInt32Array(458761, 655362, 0, 458767, 589826, 2, 45876
 position = Vector2(51, 47)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="test" parent="." instance=ExtResource("3_xsnrk")]
-position = Vector2(-15, -73)
