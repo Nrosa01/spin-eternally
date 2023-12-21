@@ -37,5 +37,5 @@ func reset_body() -> void:
 	test_body.velocity = owner.velocity
 
 func move_body(delta: float) -> Vector2:
-	physics_algorithm.move_body(test_body, config)
+	physics_algorithm.move_body(test_body, config, 1)
 	return test_body.global_position

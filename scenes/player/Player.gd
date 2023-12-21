@@ -25,10 +25,10 @@ func _ready():
 	drag_handler.dragged.connect(_on_dragged)
 	drag_handler.drag_finished.connect(_on_drag_finished)
 
-@warning_ignore("shadowed_variable_base_class")
-func _on_drag_started(position: Vector2):
-	line_renderer.points = [position, position]
+func _on_drag_started(drag_start_position: Vector2):
+	line_renderer.points = [drag_start_position, drag_start_position]
 	line_renderer.visible = true
+	TimeHandler.time_scale = 0.05	
 
 func _on_dragged(current_position: Vector2, direction: Vector2, distance: float):
 	var clamped_distance = clamp(distance, 0.0, config.max_slide_distance)
@@ -60,7 +60,8 @@ func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
 	else:
 		line_renderer.modulate = Color.WHITE
 	
-	velocity += get_shoot_force(direction, distance)
+	TimeHandler.time_scale = 1		
+	velocity = get_shoot_force(direction, distance)
 	trayectory_line.hide()
 	line_renderer.hide()
 
@@ -73,4 +74,4 @@ func get_shoot_force(direction: Vector2, drag_distance: float) -> Vector2:
 		return Vector2.ZERO
 
 func _physics_process(delta):
-	physics_algorithm.move_body(self, config)
+	physics_algorithm.move_body(self, config, TimeHandler.time_scale)

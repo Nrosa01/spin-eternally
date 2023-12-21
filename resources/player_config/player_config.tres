@@ -4,11 +4,10 @@
 
 [resource]
 script = ExtResource("1_l6s5u")
-gravity = 1.0
-max_force = 21.0
+gravity = 0.3
+max_force = 13.0
 min_force = 3.0
 max_slide_distance = 30.0
 minimum_required_slide_distance = 2.5
 bounce_multiplier = 0.6
 friction = 0.85
-fall_multiplier = 1.5
