@@ -76,5 +76,5 @@ renderer/rendering_method="gl_compatibility"
 
 time_scale={
 "type": "float",
-"value": 0.0
+"value": 1.0
 }

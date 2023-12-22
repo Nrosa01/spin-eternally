@@ -2,7 +2,7 @@ extends PhysicAlgorithm
 class_name BasicPhysicAlgorithm
 
 func move_body(body: CharacterBody2D, config: PhysicsConfig, time_scale: float) -> void:
-	body.velocity += -Vector2(0, -1) * config.gravity * time_scale
+	body.velocity -= Vector2(0, -1) * config.gravity * time_scale
 	var collision: KinematicCollision2D = body.move_and_collide(body.velocity * time_scale)
 	if not collision:
 		return
@@ -12,9 +12,8 @@ func move_body(body: CharacterBody2D, config: PhysicsConfig, time_scale: float) 
 	else:
 		body.velocity = body.velocity.bounce(collision.get_normal()) * config.bounce_multiplier
 	
-	# I need to do this shit for is_on_floor func to work, it seems handling the collision and manually sliding makes
-	# the callback not get called
+	# This is ugly but it's the only thing that works
 	var temp: Vector2 = body.velocity
-	body.velocity = body.velocity.normalized() * 0.1
+	body.velocity = Vector2.ZERO
 	body.move_and_slide()
 	body.velocity = temp

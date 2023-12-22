@@ -20,12 +20,11 @@ func draw_trayectory(force: Vector2) -> void:
 	var current_pos := test_body.global_position
 	add_point(to_local(current_pos))
 	test_body.velocity += force
-	var delta := get_physics_process_delta_time()
 	var i := 0
 	
 	while current_dist < trayectory_distance and i < max_points:
 		# Get the new post moving the simulation body
-		var new_pos = move_body(delta)
+		var new_pos = move_body()
 		add_point(to_local(new_pos))
 		
 		# Add the distance to the new point
@@ -34,8 +33,8 @@ func draw_trayectory(force: Vector2) -> void:
 
 func reset_body() -> void:
 	test_body.global_position = owner.global_position
-	test_body.velocity = owner.velocity
+	test_body.velocity = Vector2.ZERO
 
-func move_body(delta: float) -> Vector2:
+func move_body() -> Vector2:
 	physics_algorithm.move_body(test_body, config, 1)
 	return test_body.global_position
