@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4fqc2qvxdosn"]
+[gd_scene load_steps=13 format=3 uid="uid://c4fqc2qvxdosn"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_i8nmb"]
 [ext_resource type="Script" path="res://scripts/game_feel/Squashable2D.gd" id="1_kknyn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://da08jdj6btsvq" path="res://resources/physics_algorithm/basic/basic_physic_algorithm.tres" id="3_r05e6"]
 [ext_resource type="Texture2D" uid="uid://c28yswojfwbh2" path="res://sprites/dashed-line.png" id="4_43ngk"]
 [ext_resource type="Shader" path="res://shaders/uvscroll.gdshader" id="4_l1xy3"]
+[ext_resource type="PackedScene" uid="uid://cnslx4vw4n2gg" path="res://scenes/collision_detector/collision_detector.tscn" id="4_sdnne"]
 [ext_resource type="Script" path="res://scenes/player/Trayectory.gd" id="5_d4sqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n6sp"]
@@ -25,6 +26,8 @@ physics_algorithm = ExtResource("3_r05e6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
 shape = SubResource("CircleShape2D_4n6sp")
+
+[node name="CollisionDetector" parent="." instance=ExtResource("4_sdnne")]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = false
@@ -82,3 +85,5 @@ offset_right = 28.0
 offset_bottom = 14.0
 theme_override_font_sizes/font_size = 5
 text = "Direction:"
+
+[editable path="CollisionDetector"]
