@@ -10,6 +10,7 @@ var shoot_force: float
 @onready var trayectory_line: Line2D = $Trayectory
 @onready var drag_handler: DragHandler = $DragHandler
 @onready var raycaster: RayCast2D = $RayCast2D
+@onready var collision_detector: CollisionDector = $CollisionDetector
 
 func raycast_in_dir(direction: Vector2, distance: float) -> bool:
 	raycaster.target_position = direction * distance
@@ -38,7 +39,7 @@ func _on_dragged(current_position: Vector2, direction: Vector2, distance: float)
 	line_renderer.points[1] = get_global_mouse_position()
 	line_renderer.visible = distance >= config.minimum_required_slide_distance
 	
-	if raycast_in_dir(direction, 10) and is_on_floor():
+	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
@@ -50,7 +51,7 @@ func _on_dragged(current_position: Vector2, direction: Vector2, distance: float)
 
 func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
 	
-	if raycast_in_dir(direction, 10) and is_on_floor():
+	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
@@ -78,5 +79,5 @@ func _input(event: InputEvent) -> void:
 			trayectory_line.draw_trayectory(get_shoot_force(Vector2.ZERO, 0))
 
 func _physics_process(delta):	
-	%Direction.text = str(is_on_floor())
+	%Direction.text = str(collision_detector.is_on_floor())
 	physics_algorithm.move_body(self, config, TimeHandler.time_scale)

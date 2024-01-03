@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdry1apf73ncd"]
+
+[ext_resource type="PackedScene" uid="uid://noe2tbqxr2kn" path="res://idtk/test1.ldtk" id="1_20dbs"]
+[ext_resource type="TileSet" uid="uid://cgyr82a543tf5" path="res://idtk/tilesets/tileset8x8.res" id="2_nqkru"]
+
+[node name="test1-scene" type="Node2D"]
+
+[node name="test1" parent="." instance=ExtResource("1_20dbs")]
+
+[node name="World" parent="test1/Level_0" index="0"]
+tile_set = ExtResource("2_nqkru")
+
+[editable path="test1"]
