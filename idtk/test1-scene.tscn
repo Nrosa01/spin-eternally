@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdry1apf73ncd"]
+[gd_scene load_steps=4 format=3 uid="uid://cdry1apf73ncd"]
 
 [ext_resource type="PackedScene" uid="uid://noe2tbqxr2kn" path="res://idtk/test1.ldtk" id="1_20dbs"]
+[ext_resource type="PackedScene" uid="uid://c4fqc2qvxdosn" path="res://scenes/player/Player.tscn" id="1_vsp85"]
 [ext_resource type="TileSet" uid="uid://cgyr82a543tf5" path="res://idtk/tilesets/tileset8x8.res" id="2_nqkru"]
 
 [node name="test1-scene" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("1_vsp85")]
+position = Vector2(51, 47)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
 [node name="test1" parent="." instance=ExtResource("1_20dbs")]
 
 [node name="World" parent="test1/Level_0" index="0"]
+tile_set = ExtResource("2_nqkru")
+
+[node name="NoBouncable" parent="test1/Level_0" index="1"]
 tile_set = ExtResource("2_nqkru")
 
 [editable path="test1"]
