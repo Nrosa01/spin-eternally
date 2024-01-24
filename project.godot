@@ -8,6 +8,8 @@
 
 config_version=5
 
+show_default_buttons=false
+
 [application]
 
 config/name="Spin Eternally"
@@ -19,6 +21,7 @@ config/icon="res://icon.svg"
 
 RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 TimeHandler="*res://scripts/TimeHandler.gd"
+Debug="*res://scripts/debug.gd"
 
 [display]
 
