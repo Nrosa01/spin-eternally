@@ -18,26 +18,26 @@ func is_on_right_wall() -> bool:
 func is_on_ceiling() -> bool:
 	return _is_on_ceiling
 
-func _on_up_area_2d_body_entered(body: Node2D) -> void:
+func _on_up_area_2d_body_entered(_body: Node2D) -> void:
 	_is_on_ceiling = true
 
-func _on_up_area_2d_body_exited(body: Node2D) -> void:
+func _on_up_area_2d_body_exited(_body: Node2D) -> void:
 	_is_on_ceiling = false
 
-func _on_right_area_2d_body_entered(body: Node2D) -> void:
+func _on_right_area_2d_body_entered(_body: Node2D) -> void:
 	_is_on_right_wall = true
 
-func _on_right_area_2d_body_exited(body: Node2D) -> void:
+func _on_right_area_2d_body_exited(_body: Node2D) -> void:
 	_is_on_right_wall = false
 
-func _on_left_area_2d_body_entered(body: Node2D) -> void:
+func _on_left_area_2d_body_entered(_body: Node2D) -> void:
 	_is_on_left_wall = true
 
-func _on_left_area_2d_body_exited(body: Node2D) -> void:
+func _on_left_area_2d_body_exited(_body: Node2D) -> void:
 	_is_on_left_wall = false
 
-func _on_down_area_2d_body_entered(body: Node2D) -> void:
+func _on_down_area_2d_body_entered(_body: Node2D) -> void:
 	_is_on_floor = true
 
-func _on_down_area_2d_body_exited(body: Node2D) -> void:
+func _on_down_area_2d_body_exited(_body: Node2D) -> void:
 	_is_on_floor = false

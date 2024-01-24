@@ -8,10 +8,12 @@
 
 config_version=5
 
+show_default_buttons=false
+
 [application]
 
 config/name="Spin Eternally"
-run/main_scene="res://scenes/test-room.tscn"
+run/main_scene="res://idtk/test1-scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +21,7 @@ config/icon="res://icon.svg"
 
 RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 TimeHandler="*res://scripts/TimeHandler.gd"
+Debug="*res://scripts/debug.gd"
 
 [display]
 

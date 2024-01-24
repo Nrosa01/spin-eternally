@@ -32,7 +32,7 @@ func on_released_handler():
 	drag_finished.emit(get_global_mouse_position(), direction_unnormalized.normalized(), distance)
 	dragging = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dragging:
 		on_pressed_handler()
 
