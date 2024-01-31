@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6xa8pq01susq"]
+
+[ext_resource type="Script" path="res://scripts/debug.gd" id="1_xtgsd"]
+
+[node name="debug_util" type="Node2D"]
+top_level = true
+script = ExtResource("1_xtgsd")
