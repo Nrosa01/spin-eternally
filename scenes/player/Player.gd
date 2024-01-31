@@ -35,7 +35,7 @@ func _on_dragged(current_position: Vector2, direction: Vector2, distance: float)
 	shoot_force = pow(clamped_distance / config.max_slide_distance, 2) * config.max_force
 	shoot_force = max(shoot_force, config.min_force)
 
-	line_renderer.points[1] = current_position
+	line_renderer.points[1] = line_renderer.points[0] - clamped_distance * direction
 	line_renderer.visible = distance >= config.minimum_required_slide_distance
 	
 	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():

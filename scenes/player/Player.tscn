@@ -72,6 +72,7 @@ debug_color = Color(0.607843, 0.368627, 0.988235, 0.419608)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DragLine" type="Line2D" parent="CanvasLayer"]
+top_level = true
 points = PackedVector2Array(44, -1, 0, 0)
 width = 1.0
 
