@@ -48,12 +48,6 @@ position_lerp_factor = 0.15
 position = Vector2(0, -4)
 texture = ExtResource("2_gocnh")
 
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
-top_level = true
-points = PackedVector2Array(44, -1, 0, 0)
-width = 1.0
-
 [node name="Trayectory" type="Line2D" parent="."]
 visible = false
 texture_repeat = 2
@@ -76,6 +70,10 @@ shape = SubResource("CircleShape2D_4n6sp")
 debug_color = Color(0.607843, 0.368627, 0.988235, 0.419608)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DragLine" type="Line2D" parent="CanvasLayer"]
+points = PackedVector2Array(44, -1, 0, 0)
+width = 1.0
 
 [node name="Direction" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true

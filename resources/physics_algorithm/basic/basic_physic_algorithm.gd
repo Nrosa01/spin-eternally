@@ -36,11 +36,11 @@ func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, co
 		var data_layer_exists: bool = tilemap.tile_set.get_custom_data_layer_by_name("Data") != -1
 		
 		# BOUNCABLE MANAGEMENT MUST BE DONE HERE
-		if cell_tile_data and data_layer_exists:
-			var tile_custom_data = cell_tile_data.get_custom_data("Data")
+		# if cell_tile_data and data_layer_exists:
+		#	var tile_custom_data = cell_tile_data.get_custom_data("Data")
 			
-			if tile_custom_data:
-				print(MaterialEnum.MaterialTile.find_key(tile_custom_data.material))
+		#	if tile_custom_data:
+		#		print(MaterialEnum.MaterialTile.find_key(tile_custom_data.material))
 		
 	
 	if abs(collision.get_normal().x) <= 0.001:
