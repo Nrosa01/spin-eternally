@@ -30,7 +30,7 @@ func _on_drag_started(drag_start_position: Vector2):
 	line_renderer.visible = true
 	TimeHandler.time_scale = 0.055	
 
-func _on_dragged(current_position: Vector2, direction: Vector2, distance: float):
+func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float):
 	var clamped_distance = clamp(distance, 0.0, config.max_slide_distance)
 	shoot_force = pow(clamped_distance / config.max_slide_distance, 2) * config.max_force
 	shoot_force = max(shoot_force, config.min_force)

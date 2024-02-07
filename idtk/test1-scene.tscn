@@ -11,3 +11,5 @@
 position = Vector2(56, 49)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[editable path="test1"]
