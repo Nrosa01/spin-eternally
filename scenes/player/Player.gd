@@ -42,7 +42,6 @@ func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
-		# Gain extra jump
 	else:
 		line_renderer.modulate = Color.WHITE
 	

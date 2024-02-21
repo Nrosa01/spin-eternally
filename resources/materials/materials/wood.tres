@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TerrainMaterial" load_steps=2 format=3 uid="uid://fxqn31myl6we"]
+
+[ext_resource type="Script" path="res://resources/materials/terrain_material.gd" id="1_3a2qf"]
+
+[resource]
+script = ExtResource("1_3a2qf")
+name = &"wood"
+bouncable = true

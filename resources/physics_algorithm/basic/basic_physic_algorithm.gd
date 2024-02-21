@@ -35,13 +35,13 @@ func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, co
 		
 		## BOUNCABLE MANAGEMENT MUST BE DONE HERE
 		#var cell_tile_data := tilemap.get_cell_tile_data(0, cell_pos)
-		#var data_layer_exists: bool = tilemap.tile_set.get_custom_data_layer_by_name("Data") != -1
-		
+		#var data_layer_exists: bool = tilemap.tile_set.get_custom_data_layer_by_name("material") != -1
+		#
 		#if cell_tile_data and data_layer_exists:
-			#var tile_custom_data = cell_tile_data.get_custom_data("Data")
+			#var tile_custom_data: TerrainMaterial = cell_tile_data.get_custom_data("material")
 			#
 			#if tile_custom_data:
-				#print(MaterialEnum.MaterialTile.find_key(tile_custom_data.material))
+				#print("Material ", tile_custom_data.name)
 		
 	
 	if abs(collision.get_normal().x) <= 0.001:

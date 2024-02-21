@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TerrainMaterial" load_steps=2 format=3 uid="uid://deco1b101mbbo"]
+
+[ext_resource type="Script" path="res://resources/materials/terrain_material.gd" id="1_2830b"]
+
+[resource]
+script = ExtResource("1_2830b")
+name = &"poison"
+bouncable = true
