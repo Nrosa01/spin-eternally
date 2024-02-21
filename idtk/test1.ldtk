@@ -70,7 +70,7 @@
 			"intGridValues": [
 				{ "value": 1, "identifier": "Terrain", "color": "#8BB484", "tile": null, "groupUid": 0 },
 				{ "value": 2, "identifier": "Wood", "color": "#D29D5A", "tile": null, "groupUid": 0 },
-				{ "value": 3, "identifier": "NoBounceableTerrain", "color": "#BE4A2F", "tile": null, "groupUid": 0 }
+				{ "value": 3, "identifier": "NoBounceableTerrain", "color": "#972FBE", "tile": null, "groupUid": 0 }
 			],
 			"intGridValuesGroups": [],
 			"autoRuleGroups": [

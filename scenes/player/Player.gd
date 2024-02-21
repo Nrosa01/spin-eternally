@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Basic config
 @export var config: PhysicsConfig
 @export var physics_algorithm: BasicPhysicAlgorithm
+@export var collision_handler: CollisionHandler
 @onready var line_renderer: Line2D = $CanvasLayer/DragLine
 
 var shoot_force: float
@@ -76,6 +77,17 @@ func _input(event: InputEvent) -> void:
 			TimeHandler.time_scale = 0.1	
 			trayectory_line.draw_trayectory(get_shoot_force(Vector2.ZERO, 0))
 
+## Due to how Godot handles collisions, if you don't use move_and_slide
+## you need to do this to register collisions
+func fix_collisions():
+	var temp: Vector2 = velocity
+	velocity = Vector2.ZERO
+	move_and_slide()
+	velocity = temp
+
 func _physics_process(_delta):	
 	%Direction.text = str(collision_detector.is_on_floor())
-	physics_algorithm.move_body(self, config, TimeHandler.time_scale)
+	var collision = physics_algorithm.move_body(self, config, TimeHandler.time_scale)
+	if collision:
+		collision_handler.handle_collision(collision, self, config, TimeHandler.time_scale)
+	fix_collisions()

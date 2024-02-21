@@ -10,12 +10,10 @@ func _init() -> void:
 func _draw():
 	for pos in r:
 		if pos is Vector2 or pos is Vector2i:
-			draw_rect(Rect2i(pos, Vector2.ONE * 8), Color.BLUE)
-			pass
-	pass
+			draw_rect(Rect2i(pos, Vector2.ONE * 8), Color(Color.BLUE, 0.75))
 	
 	if r2 != Vector2.ZERO:
-		draw_rect(Rect2i(r2, Vector2.ONE * 8), Color.RED)
+		draw_rect(Rect2i(r2, Vector2.ONE * 8), Color(Color.RED, 0.2))
 	
 	draw_circle(position, 5, Color.RED)
 	
