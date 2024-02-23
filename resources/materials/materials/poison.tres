@@ -6,3 +6,5 @@
 script = ExtResource("1_2830b")
 name = &"poison"
 bouncable = true
+bounce_multiplier = 0.6
+friction = 0.85

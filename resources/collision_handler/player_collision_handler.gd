@@ -6,11 +6,14 @@ func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, co
 	
 	# show_tile_collision(collision)
 	
+	if not tile_custom_data:
+		return
+	
 	#if tile_custom_data:
 		#print("Material ", tile_custom_data.name)
 	
 	if abs(collision.get_normal().x) <= 0.001:
-		body.velocity = body.velocity.slide(collision.get_normal()) * config.friction
+		body.velocity = body.velocity.slide(collision.get_normal()) * tile_custom_data.friction
 	else:
-		body.velocity = body.velocity.bounce(collision.get_normal()) * config.bounce_multiplier
+		body.velocity = body.velocity.bounce(collision.get_normal()) * tile_custom_data.bounce_multiplier
 	pass
