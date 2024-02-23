@@ -6,6 +6,10 @@ extends CharacterBody2D
 @export var collision_handler: CollisionHandler
 @onready var line_renderer: Line2D = $CanvasLayer/DragLine
 
+# "Jump" settings
+@export var jump_count = 1
+@onready var _jump_count = jump_count
+
 var shoot_force: float
 
 @onready var trayectory_line: Line2D = $Trayectory
@@ -46,15 +50,20 @@ func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float
 	else:
 		line_renderer.modulate = Color.WHITE
 	
+	if _jump_count <= 0:
+		line_renderer.modulate = Color.GREEN
+	
 	trayectory_line.draw_trayectory(get_shoot_force(direction, distance))
 
 func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
+	_jump_count -= 1
 	
 	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
 		# Gain extra jump
+		_jump_count = 1
 	else:
 		line_renderer.modulate = Color.WHITE
 	
@@ -89,5 +98,8 @@ func _physics_process(_delta):
 	%Direction.text = str(collision_detector.is_on_floor())
 	var collision = physics_algorithm.move_body(self, config, TimeHandler.time_scale)
 	if collision:
+		if collision_handler.get_tilemap_data(collision).bouncable:
+			_jump_count = 1
+		
 		collision_handler.handle_collision(collision, self, config, TimeHandler.time_scale)
 	fix_collisions()
