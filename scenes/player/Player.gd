@@ -1,14 +1,24 @@
 extends CharacterBody2D
 
-# Basic config
-@export var config: PhysicsConfig
+
+# Basic physics_settings
+@export_subgroup("Drag settings")
+@export var max_shoot_force : float = 13.0
+@export var min_shoot_force : float = 3.0
+@export var max_drag_distance : float = 50.0
+@export var minimum_required_slide_distance : float = 2.5
+
+@export_subgroup("Physic settings")
+@export var physics_settings: PhysicsConfig
 @export var physics_algorithm: BasicPhysicAlgorithm
 @export var collision_handler: CollisionHandler
+
+@export_subgroup("")
 @onready var line_renderer: Line2D = $CanvasLayer/DragLine
 
 # "Jump" settings
-@export var jump_count = 1
-@onready var _jump_count = jump_count
+@export var extra_jump_amount = 0
+@onready var jump_count = extra_jump_amount + 1
 
 var shoot_force: float
 
@@ -36,12 +46,12 @@ func _on_drag_started(drag_start_position: Vector2):
 	TimeHandler.time_scale = 0.055	
 
 func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float):
-	var clamped_distance = clamp(distance, 0.0, config.max_slide_distance)
-	shoot_force = pow(clamped_distance / config.max_slide_distance, 2) * config.max_force
-	shoot_force = max(shoot_force, config.min_force)
+	var clamped_distance = clamp(distance, 0.0, max_drag_distance)
+	shoot_force = pow(clamped_distance / max_drag_distance, 2) * max_shoot_force
+	shoot_force = max(shoot_force, min_shoot_force)
 
 	line_renderer.points[1] = line_renderer.points[0] - clamped_distance * direction
-	line_renderer.visible = distance >= config.minimum_required_slide_distance
+	line_renderer.visible = distance >= minimum_required_slide_distance
 	
 	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
@@ -50,20 +60,20 @@ func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float
 	else:
 		line_renderer.modulate = Color.WHITE
 	
-	if _jump_count <= 0:
+	if jump_count <= 0:
 		line_renderer.modulate = Color.GREEN
 	
 	trayectory_line.draw_trayectory(get_shoot_force(direction, distance))
 
 func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
-	_jump_count -= 1
+	jump_count -= 1
 	
 	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
 		# Gain extra jump
-		_jump_count = 1
+		jump_count = 1
 	else:
 		line_renderer.modulate = Color.WHITE
 	
@@ -73,10 +83,10 @@ func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
 	line_renderer.hide()
 
 func get_shoot_force(direction: Vector2, drag_distance: float) -> Vector2:
-	drag_distance = min(drag_distance, config.max_slide_distance)
+	drag_distance = min(drag_distance, max_drag_distance)
 
-	if drag_distance >= config.minimum_required_slide_distance:
-		return direction * shoot_force * (drag_distance / config.max_slide_distance)
+	if drag_distance >= minimum_required_slide_distance:
+		return direction * shoot_force * (drag_distance / max_drag_distance)
 	else:
 		return Vector2.ZERO
 
@@ -96,10 +106,10 @@ func fix_collisions():
 
 func _physics_process(_delta):	
 	%Direction.text = str(collision_detector.is_on_floor())
-	var collision = physics_algorithm.move_body(self, config, TimeHandler.time_scale)
+	var collision = physics_algorithm.move_body(self, physics_settings, TimeHandler.time_scale)
 	if collision:
 		if collision_handler.get_tilemap_data(collision).bouncable:
-			_jump_count = 1
+			jump_count = 1
 		
-		collision_handler.handle_collision(collision, self, config, TimeHandler.time_scale)
+		collision_handler.handle_collision(collision, self, TimeHandler.time_scale)
 	fix_collisions()

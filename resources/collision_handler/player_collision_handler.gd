@@ -1,7 +1,6 @@
 extends CollisionHandler
 
-func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, config: PhysicsConfig, time_scale: float):
-	var collider := collision.get_collider()
+func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, _time_scale: float):
 	var tile_custom_data: TerrainMaterial = get_tilemap_data(collision)
 	
 	# show_tile_collision(collision)

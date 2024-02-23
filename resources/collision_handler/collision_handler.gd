@@ -24,16 +24,16 @@ func get_tilemap_data(collision: KinematicCollision2D, tile_layer: int = 0,  lay
 		var world_pos := collision.get_position() + step
 		var cell_pos := tilemap.local_to_map(tilemap.to_local(world_pos))
 		
-		var cell_tile_data := tilemap.get_cell_tile_data(0, cell_pos)
-		var data_layer_exists: bool = tilemap.tile_set.get_custom_data_layer_by_name("material") != -1
+		var cell_tile_data := tilemap.get_cell_tile_data(tile_layer, cell_pos)
+		var data_layer_exists: bool = tilemap.tile_set.get_custom_data_layer_by_name(layer_name) != -1
 		
 		if cell_tile_data and data_layer_exists:
-			return cell_tile_data.get_custom_data("material")
+			return cell_tile_data.get_custom_data(layer_name)
 		else:
 			return null
 	else:
 		return null
 
 @warning_ignore("unused_parameter")
-func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, config: PhysicsConfig, time_scale: float):
+func handle_collision(collision: KinematicCollision2D, body: CharacterBody2D, time_scale: float):
 	pass
