@@ -6,3 +6,6 @@
 script = ExtResource("1_3a2qf")
 name = &"wood"
 bouncable = true
+bounce_multiplier = 0.6
+friction = 0.85
+damage_type = 0

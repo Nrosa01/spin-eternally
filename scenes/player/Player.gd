@@ -27,10 +27,21 @@ var shoot_force: float
 @onready var raycaster: RayCast2D = $RayCast2D
 @onready var collision_detector: CollisionDector = $CollisionDetector
 
+@onready var current_surface = TerrainMaterial.new()
+
 func raycast_in_dir(direction: Vector2, distance: float) -> bool:
 	raycaster.target_position = direction * distance
 	raycaster.force_raycast_update()
 	return raycaster.is_colliding()
+
+func reset_jump():
+	jump_count = 1 + extra_jump_amount
+	
+func decrease_jump_count():
+	jump_count -= 1
+
+func can_jump() -> bool:
+	return jump_count > 0
 
 func _ready():
 	line_renderer.visible = false
@@ -60,25 +71,33 @@ func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float
 	else:
 		line_renderer.modulate = Color.WHITE
 	
-	if jump_count <= 0:
+	if not can_jump():
 		line_renderer.modulate = Color.GREEN
 	
 	trayectory_line.draw_trayectory(get_shoot_force(direction, distance))
 
 func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
-	jump_count -= 1
+	var can_jump = can_jump()
+	decrease_jump_count()
 	
 	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
 		direction = direction * -1
 		direction.x *= -1
 		line_renderer.modulate = Color.RED
 		# Gain extra jump
-		jump_count = 1
+		
+		if current_surface.bouncable:
+			reset_jump()
 	else:
 		line_renderer.modulate = Color.WHITE
 	
 	TimeHandler.time_scale = 1		
-	velocity = get_shoot_force(direction, distance)	
+	velocity = get_shoot_force(direction, distance) if can_jump else velocity
+	
+	# With this version, when you have no jumps left in air, an attempt to shoot results
+	# in a lose of all motion. It could be useful but could also lead to problems if our
+	# game is fast paced and users try to do things pretty quick
+	# velocity = get_shoot_force(direction, distance) if can_jump else Vector2.ZERO
 	trayectory_line.hide()
 	line_renderer.hide()
 
@@ -108,8 +127,9 @@ func _physics_process(_delta):
 	%Direction.text = str(collision_detector.is_on_floor())
 	var collision = physics_algorithm.move_body(self, physics_settings, TimeHandler.time_scale)
 	if collision:
-		if collision_handler.get_tilemap_data(collision).bouncable:
-			jump_count = 1
+		current_surface = collision_handler.get_tilemap_data(collision)
+		if current_surface.bouncable:
+			reset_jump()
 		
 		collision_handler.handle_collision(collision, self, TimeHandler.time_scale)
 	fix_collisions()
