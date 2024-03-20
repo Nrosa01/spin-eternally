@@ -54,9 +54,11 @@ func _ready():
 func _on_drag_started(drag_start_position: Vector2):
 	line_renderer.points = [drag_start_position, drag_start_position]
 	line_renderer.visible = true
-	TimeHandler.time_scale = 0.055	
 
 func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float):
+	if distance > minimum_required_slide_distance:
+		TimeHandler.time_scale = 0.055		
+	
 	var clamped_distance = clamp(distance, 0.0, max_drag_distance)
 	shoot_force = pow(clamped_distance / max_drag_distance, 2) * max_shoot_force
 	shoot_force = max(shoot_force, min_shoot_force)
@@ -77,22 +79,30 @@ func _on_dragged(_current_position: Vector2, direction: Vector2, distance: float
 	trayectory_line.draw_trayectory(get_shoot_force(direction, distance))
 
 func _on_drag_finished(_position: Vector2, direction: Vector2, distance: float):
-	var can_jump = can_jump()
-	decrease_jump_count()
-	
-	if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
-		direction = direction * -1
-		direction.x *= -1
-		line_renderer.modulate = Color.RED
-		# Gain extra jump
-		
-		if current_surface.bouncable:
-			reset_jump()
+	if distance < minimum_required_slide_distance:
+		velocity.x = sign(velocity.x) * 0.1
+		velocity.y = -physics_settings.gravity
+		TimeHandler.time_scale = 0.75
+		await get_tree().create_timer(0.25).timeout		
+		TimeHandler.time_scale = 1		
 	else:
-		line_renderer.modulate = Color.WHITE
-	
-	TimeHandler.time_scale = 1		
-	velocity = get_shoot_force(direction, distance) if can_jump else velocity
+		@warning_ignore("shadowed_variable")
+		var can_jump := can_jump()
+		decrease_jump_count()
+		
+		if raycast_in_dir(direction, 10) and collision_detector.is_on_floor():
+			direction = direction * -1
+			direction.x *= -1
+			line_renderer.modulate = Color.RED
+			
+			if current_surface.bouncable:
+				reset_jump()
+		else:
+			line_renderer.modulate = Color.WHITE
+		
+		velocity = get_shoot_force(direction, distance) if can_jump else velocity
+		TimeHandler.time_scale = 1		
+		
 	
 	# With this version, when you have no jumps left in air, an attempt to shoot results
 	# in a lose of all motion. It could be useful but could also lead to problems if our
