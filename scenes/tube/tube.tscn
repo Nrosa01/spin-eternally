@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1mcbv6ftc4h7"]
+
+[ext_resource type="Script" path="res://scenes/tube/PathLineRender.gd" id="1_1e4fn"]
+[ext_resource type="Texture2D" uid="uid://1m64s7ximnei" path="res://scenes/tube/tube.png" id="1_aftoe"]
+[ext_resource type="Script" path="res://scenes/tube/TubeDetectionArea.gd" id="2_aoqft"]
+
+[sub_resource type="Curve2D" id="Curve2D_6p000"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -17, 20, 0, 0, 0, 0, 29, 20, 0, 0, 0, 0, 33, -24, 0, 0, 0, 0, 6, -47)
+}
+point_count = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_virye"]
+radius = 8.0
+
+[node name="Tube" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_6p000")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-17, 20)
+rotation = 0.400793
+rotates = false
+loop = false
+
+[node name="PathLineRender" type="Line2D" parent="Path2D"]
+points = PackedVector2Array(-17, 20, 29, 20, 33, -24, 6, -47)
+texture = ExtResource("1_aftoe")
+texture_mode = 1
+script = ExtResource("1_1e4fn")
+
+[node name="TubeDetectionArea" type="Area2D" parent="Path2D"]
+position = Vector2(-17, 20)
+script = ExtResource("2_aoqft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/TubeDetectionArea"]
+shape = SubResource("CircleShape2D_virye")
