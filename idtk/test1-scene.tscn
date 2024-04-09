@@ -1,19 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdry1apf73ncd"]
+[gd_scene load_steps=6 format=3 uid="uid://cdry1apf73ncd"]
 
 [ext_resource type="PackedScene" uid="uid://noe2tbqxr2kn" path="res://idtk/test1.ldtk" id="1_20dbs"]
 [ext_resource type="PackedScene" uid="uid://c4fqc2qvxdosn" path="res://scenes/player/Player.tscn" id="2_6x4qg"]
 [ext_resource type="PackedScene" uid="uid://b1mcbv6ftc4h7" path="res://scenes/tube/tube.tscn" id="3_33ild"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_mlk2c"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_48b74"]
 
 [node name="test1-scene" type="Node2D"]
 
 [node name="test1" parent="." instance=ExtResource("1_20dbs")]
 
 [node name="Player" parent="." instance=ExtResource("2_6x4qg")]
-position = Vector2(307, 60)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(283, 65)
 
 [node name="Tube" parent="." instance=ExtResource("3_33ild")]
 position = Vector2(329, 35)
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(283, 65)
+script = ExtResource("4_mlk2c")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(0, 0)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = true
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(283, 65)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("5_48b74")
 
 [editable path="test1"]

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 # Basic physics_settings
 @export_subgroup("Drag settings")

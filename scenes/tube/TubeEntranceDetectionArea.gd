@@ -6,7 +6,7 @@ extends Area2D
 func _ready() -> void:
 	position_at_start()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		position_at_start()
 
