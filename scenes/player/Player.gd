@@ -133,7 +133,12 @@ func fix_collisions():
 	move_and_slide()
 	velocity = temp
 
+var paused: bool = false
+
 func _physics_process(_delta):	
+	if paused:
+		return
+	
 	%Direction.text = str(collision_detector.is_on_floor())
 	var collision = physics_algorithm.move_body(self, physics_settings, TimeHandler.time_scale)
 	if collision:
