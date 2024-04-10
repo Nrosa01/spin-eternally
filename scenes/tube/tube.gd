@@ -14,7 +14,7 @@ func _on_tube_entrance_detection_area_body_entered(body: Node2D) -> void:
 		node_in_tube = body
 		saved_speed = body.velocity.length() # This is not used atm
 		parent_hold = body.get_parent()
-		body.reparent(path_follow)
+		body.call_deferred("reparent", path_follow)
 		body.paused = true
 
 		# Lerp body local position to 0 in 0.25 seconds
