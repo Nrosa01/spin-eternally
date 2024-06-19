@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_6p000"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -18, 25, 0, 0, 0, 0, 45, 25, 0, 0, 0, 0, 45, -25.3704, 0, 0, 0, 0, -14, -25.3704)
+"points": PackedVector2Array(0, 0, 0, 0, -18, 25, 0, 0, 0, 0, 45, 25, 0, 0, 0, 0, 41, 3.2716, 0, 0, 0, 0, 16, -30.3086)
 }
 point_count = 4
 
@@ -35,7 +35,7 @@ loop = false
 [node name="PathLineRender" type="Line2D" parent="Path2D"]
 texture_filter = 1
 texture_repeat = 2
-points = PackedVector2Array(-18, 25, 45, 25, 45, -25.3704, -14, -25.3704)
+points = PackedVector2Array(-18, 25, 45, 25, 41, 3.2716, 16, -30.3086)
 texture = ExtResource("2_7s3ph")
 texture_mode = 1
 joint_mode = 1
