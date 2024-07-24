@@ -3,12 +3,38 @@
 [ext_resource type="PackedScene" uid="uid://noe2tbqxr2kn" path="res://idtk/test1.ldtk" id="1_20dbs"]
 [ext_resource type="PackedScene" uid="uid://c4fqc2qvxdosn" path="res://scenes/player/Player.tscn" id="2_6x4qg"]
 [ext_resource type="PackedScene" uid="uid://b1mcbv6ftc4h7" path="res://scenes/tube/tube.tscn" id="3_33ild"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_mlk2c"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_2nxf7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_48b74"]
 
 [node name="test1-scene" type="Node2D"]
 
 [node name="test1" parent="." instance=ExtResource("1_20dbs")]
+
+[node name="Entities" parent="test1/Level_0" index="2"]
+entities = [{
+"definition": {
+"color": Color(0.843137, 0.372549, 0.262745, 1),
+"field_defs": {
+1002: {
+"identifier": "Point",
+"type": "Array<Point>"
+}
+},
+"hollow": false,
+"identifier": "Tube",
+"renderMode": "Rectangle",
+"tags": []
+},
+"fields": {
+"Point": [Vector2i(1, 17), Vector2i(1, 8), Vector2i(4, 8), Vector2i(4, 5), Vector2i(6, -20)]
+},
+"identifier": "Tube",
+"iid": "bbeb23b0-d7b0-11ee-bbd9-21998ad4a33f",
+"pivot": Vector2(0, 0),
+"position": Vector2i(24, 136),
+"size": Vector2i(8, 8),
+"smart_color": Color(0.843137, 0.372549, 0.262745, 1)
+}]
 
 [node name="Player" parent="." instance=ExtResource("2_6x4qg")]
 position = Vector2(283, 65)
@@ -16,28 +42,10 @@ position = Vector2(283, 65)
 [node name="Tube" parent="." instance=ExtResource("3_33ild")]
 position = Vector2(329, 35)
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(283, 65)
-script = ExtResource("4_mlk2c")
-priority_override = false
-priority = 0
-zoom = Vector2(1, 1)
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+script = ExtResource("4_2nxf7")
 follow_mode = 2
 follow_target = NodePath("../Player")
-follow_parameters/target_offset = Vector2(0, 0)
-follow_parameters/damping = false
-frame_preview = true
-pixel_perfect = true
-limit/draw_limits = false
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = null
-tween_on_load = true
-inactive_update_mode = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(283, 65)
