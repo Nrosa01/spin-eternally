@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ecb00ba2-9094-4152-96f2-e7a90a1ce66b}">
+		<property name="assetPath">
+			<value>Player/Wind_Long_Throw.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e275da3a-d41c-4b78-91a8-d036afbc86bc}</destination>
+		</relationship>
+	</object>
+</objects>

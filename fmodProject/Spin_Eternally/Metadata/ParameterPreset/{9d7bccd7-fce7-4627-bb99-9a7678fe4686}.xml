@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{9d7bccd7-fce7-4627-bb99-9a7678fe4686}">
+		<property name="name">
+			<value>HighAirTime</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a83f50a-959e-4228-acd4-57bd91aadb8a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6ddefab3-bef0-4dc0-ac57-a9aa74767dc3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6ddefab3-bef0-4dc0-ac57-a9aa74767dc3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
