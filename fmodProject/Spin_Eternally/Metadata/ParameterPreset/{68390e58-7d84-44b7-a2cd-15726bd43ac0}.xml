@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{68390e58-7d84-44b7-a2cd-15726bd43ac0}">
+		<property name="name">
+			<value>PlayerRollSpeed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a83f50a-959e-4228-acd4-57bd91aadb8a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4d5277ff-6c07-4e5a-a6cb-1ae6921ebdc5}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4d5277ff-6c07-4e5a-a6cb-1ae6921ebdc5}">
+		<property name="initialValue">
+			<value>0.5</value>
+		</property>
+	</object>
+</objects>

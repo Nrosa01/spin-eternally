@@ -127,7 +127,6 @@
 		<property name="timelockedOffset">
 			<value>0.45000000000000001</value>
 		</property>
-		<property name="name" />
 		<property name="volume">
 			<value>4</value>
 		</property>
@@ -171,7 +170,6 @@
 		<property name="length">
 			<value>0.15000000000000002</value>
 		</property>
-		<property name="name" />
 		<property name="pitch">
 			<value>2.79999995</value>
 		</property>
@@ -221,10 +219,10 @@
 	</object>
 	<object class="TransitionRegion" id="{425b9d73-cb47-4d70-b6cb-cbd39e58945d}">
 		<property name="position">
-			<value>0.55000000000000004</value>
+			<value>0</value>
 		</property>
 		<property name="length">
-			<value>1.5999999999999994</value>
+			<value>2.1499999999999999</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{cf7f90e8-b85c-40f1-8224-ac276a3a2dad}</destination>
